@@ -34,7 +34,7 @@ function App() {
     alert("Inserte solo letras o espacios");
   };
 
-  console.log(data.firstName === "")
+
 
   return (
     <div className="App">
