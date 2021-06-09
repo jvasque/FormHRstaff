@@ -5,7 +5,7 @@ Requirements:
 
  Is neccesary create a database in sql with the name "cidenet" to use this app.
 
- You must create an .env file with credentials for database. *(see example file .env).
+ You must create an .env file in api folder with credentials for database. *(see example file .env.example).
 
 
 Coming soon: Search bar, posibility to use without database in SQL.
