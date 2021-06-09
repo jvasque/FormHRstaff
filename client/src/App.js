@@ -8,10 +8,19 @@ function App() {
     otherName: "",
     firstLastName: "",
     secondLastName: "",
+    identificationNumber: "",
   });
 
+  const maxCaracterIdentification = 20;
+  const maxCaracterOthername = 50;
+
   const sendData = async () => {
-    if ((data.firstName && data.firstLastName && data.secondLastName) === "") {
+    if (
+      (data.firstName &&
+        data.firstLastName &&
+        data.secondLastName &&
+        data.identificationNumber) === ""
+    ) {
       return alert("Complete todos los campos antes de guardar los datos");
     }
 
@@ -25,16 +34,32 @@ function App() {
   };
 
   const onChangeInput = (nameInput, val) => {
-    let onlyLettersAndSpaces = /^[a-zA-Z\s]*$/;
+    if (nameInput === "otherName" && val.length > maxCaracterOthername) {
+      return alert(
+        `Nombre secundario demasiado largo. Máximo largo ${maxCaracterOthername}`
+      );
+    }
+
+    let onlyLettersAndSpaces = /^[A-Z\s]*$/;
     let isCorrect = onlyLettersAndSpaces.test(val);
     if (isCorrect) {
       return setData({ ...data, [nameInput]: val });
     }
 
-    alert("Inserte solo letras o espacios");
+    alert("Inserte solo letras mayúsculas o espacios");
   };
 
+  const onChangeIdentificationInput = (nameInput, val) => {
+    let onlyLettersAndSpaces = /^[a-zA-Z0-9-]*$/;
+    let isCorrect = onlyLettersAndSpaces.test(val);
+    if (isCorrect && val.length <= maxCaracterIdentification) {
+      return setData({ ...data, [nameInput]: val });
+    }
 
+    alert(`Superó el largo permitido max ${maxCaracterIdentification}`);
+  };
+
+  console.log(data);
 
   return (
     <div className="App">
@@ -58,9 +83,16 @@ function App() {
         placeholder="Otros nombres"
         onChange={(e) => onChangeInput("otherName", e.target.value)}
       />
+      <input
+        value={data.identificationNumber}
+        placeholder="Número de identificación"
+        onChange={(e) =>
+          onChangeIdentificationInput("identificationNumber", e.target.value)
+        }
+      />
       <input type="button" value="Guardar Datos" onClick={sendData} />
     </div>
   );
 }
-
+//[a-zA-Z0-9-]
 export default App;

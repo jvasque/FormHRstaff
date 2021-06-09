@@ -1,7 +1,7 @@
 const { Cidenet } = require("../db");
 
 module.exports = async (req, res, next) => {
-  const { firstName, otherName, firstLastName, secondLastName } = req.body.data;
+  const { firstName, otherName, firstLastName, secondLastName,identificationNumber } = req.body.data;
 
   try {
     let data = await Cidenet.findOrCreate({
@@ -9,7 +9,8 @@ module.exports = async (req, res, next) => {
         firstName,
         otherName,
         firstLastName,
-        secondLastName
+        secondLastName,
+        identificationNumber
       },
     });
 

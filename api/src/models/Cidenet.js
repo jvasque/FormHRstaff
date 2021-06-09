@@ -19,6 +19,10 @@ module.exports = (sequelize) => {
     secondLastName:{
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    identificationNumber:{
+      type: DataTypes.STRING,
+      allowNull: false,    
     }
   });
 };
